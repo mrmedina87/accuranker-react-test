@@ -1,0 +1,91 @@
+header.header-wrapper {
+  background: #555;
+}
+
+span.flag {
+  display: inline-block;
+  width: 20px;
+  vertical-align: text-bottom;
+  margin-left: 20px;
+  img {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.accuranker-logo {
+  width: 160px;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  img {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.about-accuranker-header {
+  background: #555;
+}
+
+.employee-box {
+  text-align: center;
+}
+
+.body-aboutus {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.employee-img-wrapper {
+  margin-bottom: 20px;
+  img {
+    width: 100%;
+  }
+}
+
+.employee-box {
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #eee;
+  padding: 20px 20px;
+  cursor: pointer;
+  font-size: 21px;
+  font-family: Arial;
+  font-weight: 600;
+}
+
+.button-hover {
+  cursor: pointer;
+}
+
+.aboutdesc {
+  padding: 0 0 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.right-column-about {
+  border-left: 1px solid #ccc;
+  button, a {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.right-column-employee {
+  border-left: 1px solid #ccc;
+  text-align: center;
+  img {
+    display: inline-block;
+    width: 80%;
+  }
+}
+
+.body-row {
+  margin: 20px 0 20px;
+}
+
+.about-accuranker-body {
+  margin-bottom: 16px;
+}

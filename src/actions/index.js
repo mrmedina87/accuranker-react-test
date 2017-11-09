@@ -1,68 +1,82 @@
-export const REQUEST_EMPLOYEES = 'REQUEST_EMPLOYEES'
-function requestEmployees() {
+import {
+  REQUEST_EMPLOYEES,
+  RECEIVE_EMPLOYEES,
+  FAIL_REQUEST_EMPLOYEES,
+  REQUEST_ABOUT,
+  RECEIVE_ABOUT,
+} from './types';
+
+// creators for each type of object actions
+
+const requestEmployees = () => {
   return {
     type: REQUEST_EMPLOYEES
-  }
-}
+  };
+};
 
-export const RECEIVE_EMPLOYEES = 'RECEIVE_EMPLOYEES'
-function receiveEmployees(json) {
+const receiveEmployees = json => {
   return {
     type: RECEIVE_EMPLOYEES,
     employees: json
-  }
-}
+  };
+};
 
-export const REQUEST_ABOUT = 'REQUEST_ABOUT'
-function requestAbout() {
+const errorEmployees = (error) => {
+  return {
+    type: FAIL_REQUEST_EMPLOYEES,
+    error
+  };
+};
+
+const requestAbout = () => {
   return {
     type: REQUEST_ABOUT
-  }
-}
+  };
+};
 
-export const RECEIVE_ABOUT = 'RECEIVE_ABOUT'
-function receiveAbout(about) {
+const receiveAbout = about => {
   return {
     type: RECEIVE_ABOUT,
     about
-  }
-}
+  };
+};
 
-export const fetchEmployees = function(dispatch) {
-  return new Promise(function(resolve, reject) {
+// creators for redux-promise actions
+
+export const fetchEmployees = dispatch => {
+  return new Promise((resolve, reject) => {
+    
     dispatch(requestEmployees());
-    return fetch(`https://accuranker-test-api.herokuapp.com/api/employees`).then(function(response) {
-      var resp = response.json();
-      return resp;
-    }).then(function(json) {
-      dispatch(receiveEmployees(json));
-    });
+    return fetch(`https://accuranker-test-api.herokuapp.com/api/employees`)
+      .then(response => {
+        return response.json();
+      }, error => {
+        dispatch(errorEmployees(error));
+      })
+      .then(json => {
+        dispatch(receiveEmployees(json));
+      });
+
   });
-}
+};
 
-export const fetchAbout = function(dispatch) {
-  return new Promise(function(resolve, reject) {
+export const fetchAbout = dispatch => {
+  return new Promise((resolve, reject) => {
+
     dispatch(requestAbout());
-
     const aboutInfo = {
       title: "Accuranker",
       description: "Accuranker is a state-of-the-art SEO tool that maximises the search engine marketing and organic reach of websites, brands and businesses.",
-      Address: "Aaboulevarden 3, 3. sal 8000 Aarhus C",
-      Country: "Denmark",
+      address: "Aaboulevarden 3, 3. sal 8000 Aarhus C",
+      country: "Denmark",
       VAT: "DK32932215",
-      Phone: "+4571992600",
+      phone: "+4571992600",
       email: "hello@accuranker.com",
       trialLink: "trial_link"
-    }
+    };
 
-    // should be inside a then resolver function
+    // should be inside a fetch's (or similar) then-callback
     dispatch(receiveAbout(aboutInfo));
 
-    /*return fetch(`ABOUT_URL_RESOURCE`).then(function(response) {
-      var resp = response.json();
-      return resp;
-    }).then(function(json) {
-      dispatch(receiveAbout(json));
-    });*/
   });
-}
+};
